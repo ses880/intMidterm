@@ -6,6 +6,7 @@ public class bedCollider : MonoBehaviour
 {
     public GameObject player;
     public GameObject displayText;
+    public GameObject imageTest;
 
     public Collider colBed;
     public Rigidbody RB;
@@ -29,13 +30,26 @@ public class bedCollider : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        displayText.SetActive(true);
-        Debug.Log("enter bed");
+        
+        if (collision.gameObject.tag == "Player")
+        {
+            //displayText.SetActive(true);
+            imageTest.SetActive(true);
+            Debug.Log("enter bed");
+
+
+        }
+        
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        displayText.SetActive(false);
-        Debug.Log("exit bed");
+        if (collision.gameObject.tag == "Player")
+        {
+            //displayText.SetActive(false);
+            imageTest.SetActive(false);
+            Debug.Log("exit bed");
+
+        }
     }
 }

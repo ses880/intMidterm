@@ -6,18 +6,23 @@ public class wasdControl : MonoBehaviour
 {
     public float speed = 1f;
     public float turnSpeed = 3f;
+    public float movement = 10f;
+    public Rigidbody RB;
 
     //public GameObject object1;
 
     // Start is called before the first frame update
     void Start()
     {
-
+       RB = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
-    void Update()
+    public void FixedUpdate()
     {
+        
+  
+    
         /* 
         if (Input.GetKey(KeyCode.W))
         {
@@ -39,26 +44,30 @@ public class wasdControl : MonoBehaviour
             transform.Rotate(0, -turnSpeed, 0);
         }
         */
-
+        
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Translate(speed, 0, 0);
+             //transform.Translate(speed, 0, 0);
+            RB.AddForce(transform.right * movement, ForceMode.Impulse);
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Translate(-speed, 0, 0);
+            RB.AddForce(-transform.right * movement, ForceMode.Impulse);
         }
+        
 
         if (Input.GetKey(KeyCode.W))
         {
-            transform.Translate(0, 0, speed);
+            RB.AddForce(transform.forward * movement, ForceMode.Impulse); 
         }
 
+        
         if (Input.GetKey(KeyCode.S))
         {
-            transform.Translate(0, 0, -speed);
+            RB.AddForce(-transform.forward * movement, ForceMode.Impulse);
         }
+        
     }
 
    /* public void OnCollisionEnter(Collision collision)
